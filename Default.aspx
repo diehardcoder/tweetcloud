@@ -55,6 +55,7 @@
     </form>    
      <div style="color: White; text-align:center">
         <asp:Label ID ="lblLastUpdatedTime" runat="server"></asp:Label>
+         &nbsp &nbsp<asp:Label ID ="remainingHits" runat="server"></asp:Label>
      </div>
     <asp:Panel runat="server" ID="pnlImages" CssClass ="img-container">   
     <div class ="main-profile-image">

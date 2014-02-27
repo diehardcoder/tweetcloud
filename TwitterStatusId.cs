@@ -27,8 +27,8 @@ namespace TwitterPuzzle
         {
             var service = new TwitterService(CommonData.ConsumerKey, CommonData.ConsumerSecret);
             service.AuthenticateWith(CommonData.AccessToken, CommonData.AccessTokenSecret);
-
-            TwitterRateLimitStatus limitStatus = new TwitterRateLimitStatus();
+            
+            TwitterRateLimitStatus limitStatus = new TwitterRateLimitStatus();           
             if (limitStatus.RemainingHits == 0)
             {
                 throw new Exception("Your Twitter limit has exceeded. Please try after sometime");
