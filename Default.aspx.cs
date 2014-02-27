@@ -10,7 +10,6 @@ namespace TwitterPuzzle
 {
     public partial class _Default : System.Web.UI.Page
     {
-        //ITwitterCloud objTweetCloud;
         List<Image> imgList = new List<Image>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -59,7 +58,7 @@ namespace TwitterPuzzle
                     }
                 }
 
-                 //if user entered TweetHandle instead of StatusId
+                //if user entered TweetHandle instead of StatusId
                 else
                 {
                     CommonData.TweetHandle = this.tbTwitterHandle.Text;
@@ -153,7 +152,7 @@ namespace TwitterPuzzle
                     onRemove);
 
             //last Updated time
-            this.lblLastUpdatedTime.Text = "Last Updated: "+ DateTime.Now.ToString();
+            this.lblLastUpdatedTime.Text = "Last Updated: "+ DateTime.Now.AddHours(12.0).ToString()+" IST";
         }
 
         private void RemovedCallback(String k, Object v, CacheItemRemovedReason reason)

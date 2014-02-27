@@ -1,24 +1,33 @@
-﻿a.tooltip > span{
-      position: absolute;
+﻿a.tooltip > span
+{
       -moz-position: absolute;
+      position: absolute;
+      
+      -moz-top: 0px;
+      -moz-left: -25px;
       top:-50px;
-      -moz-top: -50px;
-      -moz-left: -50px;
+      
       width: 75px;
       height: 10px;
-      line-height: 20px;
+      
       -moz-line-height: 20px;
-      padding: 10px;
+      line-height: 20px;
+      
       -moz-padding: 10px;
+      padding: 10px;
+      
       font-size: 14px;
       text-align: center;
       color: rgb(0, 0, 0);
       background: rgb(255, 255, 255);
-      border: 4px solid rgb(255, 255, 255);
+      
       -moz-border: 4px solid rgb(255,255,255);
-      border-radius: 5px;
+      border: 4px solid rgb(255, 255, 255);
+      
       -moz-border-radius: 5px;
-      visibility:hidden;
+      border-radius: 5px;
+      
+      visibility: hidden;
       opacity: 1;
       
 }
@@ -29,24 +38,25 @@ a.tooltip:hover > span {
       overflow: 1;
       display: run-in;
       font-weight:bolder;   
-        -moz-position: absolute;
-      -moz-top: -50px;
-      -moz-left: -50px;
 }
 
 a.tooltip:hover:after
 {      
       content: "";
       opacity:1;
-      position: absolute;
+      
       -moz-position: absolute;
+      position: absolute;
+      
       width: 0;
       height: 0;
       border-width: 10px;
       border-style: solid;
       border-color: #FFFFFF transparent transparent transparent;
-      top: -15px;
-      left: 40px;
-      -moz-top: -15px;
+      
+      
+      -moz-top: 0px;
       -moz-left: -40px;
+      top: -15px;
+      left: 40px;     
   }
