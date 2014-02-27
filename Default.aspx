@@ -53,7 +53,9 @@
         &nbsp;
     </div>
     </form>    
-     
+     <div style="color: White; text-align:center">
+        <asp:Label ID ="lblLastUpdatedTime" runat="server"></asp:Label>
+     </div>
     <asp:Panel runat="server" ID="pnlImages" CssClass ="img-container">   
     <div class ="main-profile-image">
         <asp:Image ID="mainImg" runat="server" CssClass="img-circle" />

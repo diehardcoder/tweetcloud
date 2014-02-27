@@ -33,6 +33,13 @@ namespace TwitterPuzzle
             ro.Id = CommonData.StatusId;
 
             var retweets = service.Retweets(ro).ToArray();
+
+            if (retweets.Count() == 0)
+            {
+                throw new Exception(@"Sorry Twitter did not respond to your request :(.
+                                      May be you have entered a valid StatusId/Twitter handle!");
+            }
+
             var retweetsOrdered = from tweetStatus in retweets
                                   orderby tweetStatus.User.FollowersCount descending
                                   select tweetStatus;

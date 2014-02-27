@@ -34,6 +34,13 @@ namespace TwitterPuzzle
             ro.Id = statusId;
 
             var retweets = service.Retweets(ro).ToArray();
+
+            if (retweets.Count() == 0)
+            {
+                throw new Exception(@"Sorry Twitter did not respond to your request :(.
+                                      May be you have entered a valid StatusId/Twitter handle!");
+            }
+
             var retweetsOrdered = from tweetStatus in retweets
                                 orderby tweetStatus.User.FollowersCount descending
                                 select tweetStatus;
@@ -57,6 +64,12 @@ namespace TwitterPuzzle
             userTimeLineOpt.Count = 1;
 
             var latestTweet = service.ListTweetsOnUserTimeline(userTimeLineOpt).ToArray();
+
+            if (latestTweet.Count() == 0)
+            {
+                throw new Exception(@"Sorry Twitter did not respond to your request :(.
+                                      May be you have entered a valid StatusId/Twitter handle!");
+            }
 
             statusId = latestTweet[0].Id;
 

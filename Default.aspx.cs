@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Caching;
 
 namespace TwitterPuzzle
 {
     public partial class _Default : System.Web.UI.Page
     {
-        ITwitterCloud objTweetCloud;
+        //ITwitterCloud objTweetCloud;
         List<Image> imgList = new List<Image>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -20,6 +21,13 @@ namespace TwitterPuzzle
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            ComputeCloud();
+        }
+
+        private void ComputeCloud()
+        {
+            ITwitterCloud objTweetCloud = null;
+
             if (tbTwitterHandle.Text != String.Empty)
             {
                 long result;
@@ -27,13 +35,56 @@ namespace TwitterPuzzle
                 if (long.TryParse(tbTwitterHandle.Text, out result) == true)
                 {
                     CommonData.StatusId = result;
-                    objTweetCloud = _Default.GetTweetCloudType(TweetCloudType.StatusId);
+
+                    //cache the state if doesnot exit
+                    if (Cache[CommonData.StatusId.ToString()] == null)
+                    {
+                        try
+                        {
+                            objTweetCloud = _Default.GetTweetCloudType(TweetCloudType.StatusId);
+                            objTweetCloud.GetTopTenTweets();
+                            AddItemToCache(CommonData.StatusId.ToString(), objTweetCloud);
+                        }
+
+                        catch (Exception ec)
+                        {
+                            Response.Write(@"<p style=""color:#ffffff; font-weight:bold;"">" + ec.Message + "</p>");
+                        }
+                    }
+
+                    //restore state from cache
+                    else
+                    {
+                        objTweetCloud = (ITwitterCloud)Cache[CommonData.StatusId.ToString()];
+                    }
                 }
 
+                 //if user entered TweetHandle instead of StatusId
                 else
                 {
                     CommonData.TweetHandle = this.tbTwitterHandle.Text;
-                    objTweetCloud = _Default.GetTweetCloudType(TweetCloudType.TweetHandle);
+
+                    //cache the state if doesnot exit
+                    if (Cache[CommonData.TweetHandle] == null)
+                    {
+                        try
+                        {
+                            objTweetCloud = _Default.GetTweetCloudType(TweetCloudType.TweetHandle);
+                            objTweetCloud.GetTopTenTweets();
+                            AddItemToCache(CommonData.TweetHandle, objTweetCloud);
+                        }
+
+                        catch (Exception ec)
+                        {
+                            Response.Write(@"<p style=""color:#ffffff; font-weight:bold;"">" + ec.Message + "</p>");
+                        }
+                    }
+
+                    //restore state from cache
+                    else
+                    {
+                        objTweetCloud = (ITwitterCloud)Cache[CommonData.TweetHandle];
+                    }
                 }
             }
 
@@ -42,27 +93,26 @@ namespace TwitterPuzzle
                 Response.Write(@"<p style=""color:#ffffff; font-weight:bold;"">Please enter a twitter handle or status id</p>");
                 return;
             }
-            DrawTwitterCloud();
+            DrawTwitterCloud(objTweetCloud);
         }
 
-        private void DrawTwitterCloud()
+        private void DrawTwitterCloud(ITwitterCloud objTweetCloud)
         {
             ClearCloud();
             try
             {
-                objTweetCloud.GetTopTenTweets();
                 this.mainImg.ImageUrl = objTweetCloud.MainImage;
-                
+
                 for (int i = 0; i < objTweetCloud.tweetCloudDetails.Count; i++)
                 {
-                    imgList[i].ImageUrl = objTweetCloud.tweetCloudDetails[i].ProfileImageUrl.Replace("_normal",String.Empty);
+                    imgList[i].ImageUrl = objTweetCloud.tweetCloudDetails[i].ProfileImageUrl.Replace("_normal", String.Empty);
                     imgList[i].Visible = true;
                 }
             }
 
-            catch (Exception ec) 
+            catch (Exception ec)
             {
-                Response.Write(@"<p style=""color:#ffffff; font-weight:bold;"">"+ec.Message+"</p>");
+                Response.Write(@"<p style=""color:#ffffff; font-weight:bold;"">" + ec.Message + "</p>");
             }
         }
 
@@ -74,7 +124,7 @@ namespace TwitterPuzzle
             }
         }
 
-        public static ITwitterCloud GetTweetCloudType(TweetCloudType tc)
+        private static ITwitterCloud GetTweetCloudType(TweetCloudType tc)
         {
             ITwitterCloud tweetCloud = null;
             switch (tc)
@@ -88,6 +138,32 @@ namespace TwitterPuzzle
                     break;
             }
             return tweetCloud;
+        }
+
+        private void AddItemToCache(string keyTwitterHandle, ITwitterCloud valueObj)
+        {
+            CacheItemRemovedCallback onRemove = new CacheItemRemovedCallback(this.RemovedCallback);
+
+            Cache.Insert(keyTwitterHandle,
+                    valueObj,
+                    null,
+                    Cache.NoAbsoluteExpiration,
+                    TimeSpan.FromSeconds(3600),
+                    CacheItemPriority.Default,
+                    onRemove);
+
+            //last Updated time
+            this.lblLastUpdatedTime.Text = "Last Updated: "+ DateTime.Now.ToString();
+        }
+
+        private void RemovedCallback(String k, Object v, CacheItemRemovedReason reason)
+        {
+            //When the item is expired
+            if (reason == CacheItemRemovedReason.Expired)
+            {
+                 //make call to twitter api again and cache the results
+                ComputeCloud();
+            }
         }
     }
 }

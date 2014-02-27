@@ -12,7 +12,7 @@ namespace TwitterPuzzle
     {
         //add yur twitter api tokens here
         private static string _consumerKey = "nOpNkgbLqfnEVzirmPdIQ";
-        private static string _consumerSecret = "WMqXxNT6Op9TB5hv5dNVCoVkPwJSy4lTAIc6sS23xJM";
+        private static string _consumerSecret =  "WMqXxNT6Op9TB5hv5dNVCoVkPwJSy4lTAIc6sS23xJM";
         private static string _accessToken = "433510624-0igbiTKSRpW4qX0KAsvJiejdbg9OKZqHbkN2nwce";
         private static string _accessTokenSecret = "BS8rQdBYnUAc2Ybc6rcHLfEwNvkgz3g3NWplnMpBGm6eE";
 
