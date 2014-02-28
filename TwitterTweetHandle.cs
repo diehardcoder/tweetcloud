@@ -46,6 +46,11 @@ namespace TwitterPuzzle
                 throw new Exception(@"Sorry Twitter did not respond to your request :(.
                                       May be you have entered a valid StatusId/Twitter handle!");
             }
+            
+            if (retweets == null)
+            {
+                 throw new Exception("Your Twitter limit has exceeded. Please try after sometime");
+            }
 
             var retweetsOrdered = from tweetStatus in retweets
                                 orderby tweetStatus.User.FollowersCount descending
