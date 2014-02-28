@@ -25,11 +25,11 @@ namespace TwitterPuzzle
 
         public void GetTopTenTweets()
         {
-            TwitterRateLimitStatus limitStatus = new TwitterRateLimitStatus();
+            /*TwitterRateLimitStatus limitStatus = new TwitterRateLimitStatus();
             if (limitStatus.RemainingHits == 0)
             {
                 throw new Exception("Your Twitter limit has exceeded. Please try after sometime");
-            }
+            }*/
 
             long statusId = GetLatestTweet();
             var service = new TwitterService(CommonData.ConsumerKey, CommonData.ConsumerSecret);
