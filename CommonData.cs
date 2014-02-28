@@ -11,10 +11,10 @@ namespace TwitterPuzzle
     public static class CommonData
     {
         //add yur twitter api tokens here
-        private static string _consumerKey = "nOpNkgbLqfnEVzirmPdIQ";
-        private static string _consumerSecret =  "WMqXxNT6Op9TB5hv5dNVCoVkPwJSy4lTAIc6sS23xJM";
-        private static string _accessToken = "433510624-0igbiTKSRpW4qX0KAsvJiejdbg9OKZqHbkN2nwce";
-        private static string _accessTokenSecret = "BS8rQdBYnUAc2Ybc6rcHLfEwNvkgz3g3NWplnMpBGm6eE";
+        private static string _consumerKey = "7iT7HQ4EiFPJ3x3988Ahiw";
+        private static string _consumerSecret =  "VZIfFrYphBIToiBXIg1rQfERyCOkkAF4UaLMQcBzSs";
+        private static string _accessToken = "163168291-rxY6cN1VTrFGBG9HDF7Ee08NsEwirRXQXAVkAfCo";
+        private static string _accessTokenSecret = "azcGep27YEQtfx8wKllutCmPykYMjyCDR3DRCMHkD1t9i";
 
         private static string _tweetHandle;
         private static long _statusId;
