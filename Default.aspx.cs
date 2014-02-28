@@ -155,8 +155,8 @@ namespace TwitterPuzzle
             //last Updated time
             this.lblLastUpdatedTime.Text = "Last Updated: "+ DateTime.Now.AddHours(12.0).ToString()+" IST";
 
-            TwitterRateLimitStatus limitStatus = new TwitterRateLimitStatus();
-            this.remainingHits.Text = "Remaining Hits: " + limitStatus.RemainingHits.ToString();
+            /*TwitterRateLimitStatus limitStatus = new TwitterRateLimitStatus();
+            this.remainingHits.Text = "Remaining Hits: " + limitStatus.RemainingHits.ToString();*/
         }
 
         private void RemovedCallback(String k, Object v, CacheItemRemovedReason reason)
