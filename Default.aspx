@@ -43,7 +43,7 @@
         }
     </style>
 </head>
-<body style="background-image:url(http://cdn.elegantthemes.com/blog/wp-content/uploads/2013/09/bg-5-full.jpg);" >
+<body style ="background-image:url(http://cdn.elegantthemes.com/blog/wp-content/uploads/2013/09/bg-10-full.jpg); background-size:cover; background-repeat :no-repeat;">
     <form id="form1" runat="server">
     <div style="color: White">    
       Enter twitter handle or status id: 
@@ -64,7 +64,7 @@
     <div id ="radial-div" style="position: relative;">
        <div id ="radial-div-item1" style ="position:absolute; left:250px;top: 30px;">  
        <a href ="#" class="tooltip">  
-         <asp:Image ID="image1" runat= "server" CssClass="img-circle infulence-image tooltip" Visible="False" />
+         <asp:Image ID="image1" runat= "server" CssClass="img-circle infulence-image" Visible="False" />
          <span class="tooltip">1</span>
          </a> 
        </div>

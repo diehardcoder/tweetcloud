@@ -66,6 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="Home.aspx" />
+    <Content Include="homestyle.css" />
     <Content Include="tooltip.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -79,6 +81,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="ITwitterCloud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
