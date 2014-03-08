@@ -6,7 +6,7 @@ using TweetSharp;
 
 namespace TwitterPuzzle
 {
-    public class TwitterTweetHandle : ITwitterCloud
+    /*public class TwitterTweetHandle : ITwitterCloud
     {
         private string mainImage;
         private List<TweetCloudDetails> objTweetCloud = new List<TweetCloudDetails>();
@@ -29,7 +29,7 @@ namespace TwitterPuzzle
             if (limitStatus.RemainingHits == 0)
             {
                 throw new Exception("Your Twitter limit has exceeded. Please try after sometime");
-            }*/
+            }
 
             long statusId = GetLatestTweet();
             var service = new TwitterService(CommonData.ConsumerKey, CommonData.ConsumerSecret);
@@ -43,8 +43,7 @@ namespace TwitterPuzzle
 
             if (retweets.Count() == 0)
             {
-                throw new Exception(@"Sorry Twitter did not respond to your request :(.
-                                      May be you have entered a valid StatusId/Twitter handle!");
+                throw new Exception("Cannot draw cloud since there are no retweets for this tweet");
             }
             
             if (retweets == null)
@@ -86,5 +85,5 @@ namespace TwitterPuzzle
 
             return statusId;
         }
-    }
+    }*/
 }

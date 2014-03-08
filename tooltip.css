@@ -1,62 +1,36 @@
-﻿a.tooltip > span
-{
-      -moz-position: absolute;
-      position: absolute;
-      
-      -moz-top: 0px;
-      -moz-left: -25px;
-      top:-50px;
-      
-      width: 75px;
-      height: 10px;
-      
-      -moz-line-height: 20px;
-      line-height: 20px;
-      
-      -moz-padding: 10px;
-      padding: 10px;
-      
-      font-size: 14px;
-      text-align: center;
-      color: rgb(0, 0, 0);
-      background: rgb(255, 255, 255);
-      
-      -moz-border: 4px solid rgb(255,255,255);
-      border: 4px solid rgb(255, 255, 255);
-      
-      -moz-border-radius: 5px;
-      border-radius: 5px;
-      
-      visibility: hidden;
-      opacity: 1;
-      
+﻿a.tooltips {
+  position: relative;
+  display: inline;
 }
-
-a.tooltip:hover > span {
-      visibility:visible;
-      opacity:1;    
-      overflow: 1;
-      display: run-in;
-      font-weight:bolder;   
+a.tooltips span {
+  position: absolute;
+  width:90px;
+  color: #ffffff;
+  text-shadow: 0px 0px 3px #666666;
+  background: #000000;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 7px;
+  box-shadow: 1px 0px 5px #666666;
 }
-
-a.tooltip:hover:after
-{      
-      content: "";
-      opacity:1;
-      
-      -moz-position: absolute;
-      position: absolute;
-      
-      width: 0;
-      height: 0;
-      border-width: 10px;
-      border-style: solid;
-      border-color: #FFFFFF transparent transparent transparent;
-      
-      
-      -moz-top: 0px;
-      -moz-left: -40px;
-      top: -15px;
-      left: 40px;     
-  }
+a.tooltips span:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-top: 8px solid #000000;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+a:hover.tooltips span {
+  visibility: visible;
+  opacity: 0.5;
+  bottom: 110px;
+  left: 50%;
+  margin-left: -40px;
+  z-index: 999;
+}

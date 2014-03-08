@@ -1,0 +1,56 @@
+﻿div.textstyle, h1{
+   text-align: center;
+   text-shadow: 4px 4px 7px rgba(150, 150, 150, 0.59);
+}
+
+.img-circle  {
+    border-radius: 50%;
+ }
+        
+.img-container {
+       position: relative;
+      z-index: 10;
+     width: 600px;
+        height: 500px;
+        margin-left: auto;
+        margin-right: auto;
+   }
+        
+div.main-profile-image {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        margin-left: auto;
+       left: 150px;
+       top: 150px;
+   }  
+              
+div.main-profile-image img  {
+   width: 100%;
+    height: 100%;
+  }
+        
+img.infulence-image  {
+     height: 100px;
+     width: 100px;
+     background: none repeat scroll 0% 0% #FFF;               
+}
+
+#influences-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+div.top-links-container {
+    position: fixed;
+    right: 20px;
+    top: 10px;
+    color: #000;
+}
+
+div.top-links-container a {
+    color: #000;
+    text-decoration: none;
+    background : rgba(0,0,0,0.1);
+    padding: 5px;
+}

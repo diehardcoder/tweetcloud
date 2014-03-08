@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="defaultstyle.css" />
     <Content Include="Home.aspx" />
     <Content Include="homestyle.css" />
     <Content Include="tooltip.css" />

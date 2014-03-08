@@ -26,13 +26,7 @@ namespace TwitterPuzzle
         public void GetTopTenTweets()
         {
             var service = new TwitterService(CommonData.ConsumerKey, CommonData.ConsumerSecret);
-            service.AuthenticateWith(CommonData.AccessToken, CommonData.AccessTokenSecret);
-            
-            /*TwitterRateLimitStatus limitStatus = new TwitterRateLimitStatus();           
-            if (limitStatus.RemainingHits == 0)
-            {
-                throw new Exception("Your Twitter limit has exceeded. Please try after sometime");
-            }*/
+            service.AuthenticateWith(CommonData.AccessToken, CommonData.AccessTokenSecret);            
 
             RetweetsOptions ro = new RetweetsOptions();
             ro.Count = 10;
@@ -42,8 +36,7 @@ namespace TwitterPuzzle
 
             if (retweets.Count() == 0)
             {
-                throw new Exception(@"Sorry Twitter did not respond to your request :(.
-                                      May be you have entered a valid StatusId/Twitter handle!");
+                throw new Exception("Cannot draw cloud since there are no retweets for this tweet");
             }
             
              if (retweets == null)
@@ -59,7 +52,7 @@ namespace TwitterPuzzle
 
             foreach (var tweet in retweetsOrdered)
             {
-                objTweetCloud.Add(new TweetCloudDetails(tweet.User.ProfileImageUrl));
+                objTweetCloud.Add(new TweetCloudDetails(tweet.User.ProfileImageUrl, DateTime.Now));
             }
         }
     }
